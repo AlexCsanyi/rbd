@@ -8,8 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "dotenv": "^8.2.0",
+    "emotion-theming": "^10.0.27",
     "next": "9.5.5",
+    "polished": "^4.0.3",
     "react": "16.14.0",
-    "react-dom": "16.14.0"
-  }
+    "react-dom": "16.14.0",
+    "sass": "^1.27.0"
+  },
+  "devDependencies": {}
 }
