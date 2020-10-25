@@ -1,15 +1,29 @@
 import { Box, Flex } from "reflexbox";
 import fetch from "isomorphic-unfetch";
 import getConfig from "next/config";
+import { NextSeo } from "next-seo";
 
 export default function Product({ product }) {
+  const SEO = {
+    title: `RB Dream | ${product.Name}`,
+    description: `${product.Name}`,
+
+    openGraph: {
+      title: `${product.Name}`,
+      description: `${product.Name}`,
+    },
+  };
+
   return (
-    <Box variant="container">
-      <Box as="h2" my={40}>
-        {product.Name}
+    <>
+      <NextSeo {...SEO} />
+      <Box variant="container">
+        <Box as="h2" my={40}>
+          {product.Name}
+        </Box>
+        <Box maxWidth="600">{product.Description}</Box>
       </Box>
-      <Box maxWidth="600">{product.Description}</Box>
-    </Box>
+    </>
   );
 }
 
