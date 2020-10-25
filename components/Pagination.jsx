@@ -7,8 +7,7 @@ import { Flex } from "reflexbox";
 export default function Pagination({ page, count, url }) {
   const router = useRouter();
   const pagesArray = Array.from({ length: Math.ceil(count / 3) }, (v, k) => k + 1);
-
-  console.log(router);
+  const routePageQuery = router.query.page || 1;
 
   return (
     <Flex mt={40} pl={20} justifyContent={"start"} maxWidth={600}>
@@ -20,7 +19,7 @@ export default function Pagination({ page, count, url }) {
       </StyledPaginationButton>
       {pagesArray.map((page) => (
         <StyledPaginationButton
-          className={router.query.page == page ? "active" : ""}
+          className={routePageQuery == page ? "active" : ""}
           key={page}
           onClick={() => router.push(`${url}${page}`)}
         >
