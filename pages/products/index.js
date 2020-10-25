@@ -19,12 +19,12 @@ export default function Products({ products, page, count }) {
 
 export async function getServerSideProps({ query: { page = 1 } }) {
   const { API_URL } = process.env;
-  const start = parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 3;
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const getPage = (page) => (parseInt(page) === 1 ? 0 : (parseInt(page) - 1) * 3);
 
-  const res = await fetch(`${API_URL}/products?_limit=3&_start=${start}`);
-  const data = await res.json();
-  const countResponse = await fetch(`${API_URL}/products/count`);
-  const count = await countResponse.json();
+  const start = getPage(page);
+  const data = await fetcher(`${API_URL}/products?_limit=3&_start=${start}`);
+  const count = await fetcher(`${API_URL}/products/count`);
 
   return {
     props: {
